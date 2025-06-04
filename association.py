@@ -2,9 +2,9 @@ import time
 import tracemalloc
 import pandas as pd
 from src.data_loader import load_groceries_data
-from src.models.apriori import Apriori
-from src.models.fpgrowth import FPGrowth
-from src.models.eclat import Eclat
+from src.models.association.apriori import Apriori
+from src.models.association.fpgrowth import FPGrowth
+from src.models.association.eclat import Eclat
 
 # Функция перевода списка транзакций в бинарную матрицу (для априори)
 def transactions_to_binary_df(transactions):

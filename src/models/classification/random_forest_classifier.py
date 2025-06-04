@@ -1,6 +1,7 @@
 import numpy as np
+import pandas as pd
 
-from src.models.decision_tree_classifier import DecisionTreeClassifier
+from src.models.classification.decision_tree_classifier import DecisionTreeClassifier
 
 
 # Реализация случайного леса
@@ -14,7 +15,8 @@ class RandomForestClassifier:
 
     def fit(self, X, y):
         n_samples, n_features = X.shape
-        y = y.to_numpy()
+        if isinstance(y, pd.Series):
+            y = y.to_numpy()
         if self.max_features == 'sqrt':
             self.max_features = int(np.sqrt(n_features))
 

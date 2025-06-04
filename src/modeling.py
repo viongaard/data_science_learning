@@ -1,12 +1,13 @@
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-from src.models.k_means import KMeans
+from src.models.clustering.dbscan import DBSCAN
+from src.models.clustering.k_means import KMeans
 
-from src.models.decision_tree_classifier import DecisionTreeClassifier
-from src.models.random_forest_classifier import RandomForestClassifier
+from src.models.classification.decision_tree_classifier import DecisionTreeClassifier
+from src.models.classification.random_forest_classifier import RandomForestClassifier
 
-from src.models.linear_regression import LinearRegression
+from src.models.regression.linear_regression import LinearRegression
 
 
 def prepare_data(df, target_column, feature_columns, scale=True):
@@ -22,15 +23,30 @@ def prepare_data(df, target_column, feature_columns, scale=True):
     return X_train, X_test, y_train, y_test
 
 
-def train_kmeans(X, n_clusters=3, tol=1e-4):
+def train_kmeans(X, n_clusters=2, tol=1e-4):
     model = KMeans(n_clusters=n_clusters, tol=tol)
     model.fit(X)
     return model
 
 
-def train_decision_tree_classifier(X_train, y_train, max_depth=5):
-    """Обучает DecisionTreeClassifier"""
+def train_dbscan(X, eps=0.5, min_samples=5):
+    """
+    Запускает DBSCAN
 
+    :param X: множество точек
+    :param eps: радиус окрестности точки
+    :param min_samples: минимальное количество точек в окрестности для формирования кластера
+    :return:
+    """
+    model = DBSCAN(eps=eps, min_samples=min_samples)
+    model.fit(X)
+    return model
+
+
+def train_decision_tree_classifier(X_train, y_train, max_depth=5):
+    """
+    Обучает DecisionTreeClassifier
+    """
     model = DecisionTreeClassifier(max_depth=max_depth)
     model.fit(X_train, y_train)
 

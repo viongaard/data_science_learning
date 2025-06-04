@@ -17,7 +17,7 @@ def plot_distributions(df, save_path=None):
 
 def plot_correlations(df, save_path=None):
     """Строит корреляционную матрицу."""
-    plt.figure(figsize=(8, 6))
+    plt.figure(figsize=(12, 6))
     sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt='.2f')
     plt.title("Корреляционная матрица")
     if save_path:

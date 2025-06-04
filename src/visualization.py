@@ -28,11 +28,8 @@ def plot_pca_clustering(X_pca, labels, save_path=None):
     plt.close()
 
 
-def plot_pca_classification(X, y_true, y_pred, save_path=None):
+def plot_pca_classification(X_pca, y_true, y_pred, save_path=None):
     """Визуализирует истинные и предсказанные классы с помощью PCA."""
-
-    pca = PCA(n_components=2)
-    X_pca = pca.fit_transform(X)
 
     plt.figure(figsize=(12, 5))
 
